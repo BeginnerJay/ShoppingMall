@@ -32,7 +32,7 @@
       <input type="checkbox" value="제주" v-model="checked03"> 제주
     </label>
     <br>
-    <span>체크한 지역 : {{checked3}}</span>
+    <span>체크한 지역 : {{checked03}}</span>
     <br><br>
     <label>
       <input type="radio" v-bind:value="radioValue01" v-model="picked"> 서울
@@ -45,6 +45,8 @@
     </label>
     <br>
     <span>선택한 지역 : {{picked}}</span>
+    <br><br>
+    <img v-bind:src="imgSrc" />
   </div>
 </template>
 
@@ -62,15 +64,16 @@ export default {
       checked02: true,
       checked03: [],
       picked: '',
-      radioValue01: '서울',
-      radioValue02: '부산',
-      radioValue03: '제주'
+      radioValue01: '"서울"',
+      radioValue02: '"부산"',
+      radioValue03: '"제주"',
       // 체크박스는 v-model이 내부적으로 체크박스의 checked 속성을 사용함. value 속성을 사용하는 것이 아님.
       // 그러므로 value 속성에 데이터 바인딩을 하려면 v-model이 아니라 v-bind:value를 사용해야 한다.
 
       // 라디오도 v-model이 value 속성이 아닌 checked 속성을 사용한다.
       // 그러므로 value 속성에 데이터 바인딩을 하려면 v-model이 아니라 v-bind:value를 사용해야 한다.
       // 라디오에서 체크를 하게 되면 체크된 v-bind:value에 연결된다.
+      imgSrc: 'https://kr.vuejs.org/images/logo.png'
 
     }
   }
