@@ -47,6 +47,10 @@
     <span>선택한 지역 : {{picked}}</span>
     <br><br>
     <img v-bind:src="imgSrc" />
+    <br><br>
+    <div class="container" v-bind:class="{
+      'active': isActive, 'text-red': hasError
+    }">Class Binding</div>
   </div>
 </template>
 
@@ -74,8 +78,25 @@ export default {
       // 그러므로 value 속성에 데이터 바인딩을 하려면 v-model이 아니라 v-bind:value를 사용해야 한다.
       // 라디오에서 체크를 하게 되면 체크된 v-bind:value에 연결된다.
       imgSrc: 'https://kr.vuejs.org/images/logo.png'
-
+      // 클래스에 대한 바인딩 처리를 할 때, 반드시 적용해야 하는 클래스는
+      // 기존에 사용하던 방식처럼 class 속성에 클래스명을 입력하면 되고,
+      // 데이터 바인딩 처리를 하는ㄴ 클ㄹ래스는 v-bind:class를 이용해서 추가적으로 정의해야 한다는 것이다.
+      isActive: true,
+      hasError: false
     }
   }
 }
 </script>
+<style>
+  container {
+    width: 100%;
+    height: 200px;
+  }
+  .active {
+    background-color: yellow;
+    font-weight: bold;
+  }
+  .text-red {
+    color: red;
+  }
+</style>
