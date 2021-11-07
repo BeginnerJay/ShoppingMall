@@ -1,7 +1,7 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import Home from '../views/Home.vue'
-import DataBinding from "../views/DataBinding";
-import Member from "../views/Member";
+import DataBinding from '../views/DataBinding'
+import Member from '../views/member'
 
 const routes = [
   {
