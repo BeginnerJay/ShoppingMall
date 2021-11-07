@@ -4,17 +4,17 @@ const app = express();
 const path = require('path');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
-
+const bodyParser = require('body-parser');
 const indexRouter = require('./routes/index');
 const usersRouter = require('./routes/users');
 
-const mysql = require('mysql');
+const mysql = require('mysql2'); // require(mysql)하니까 AUTH error
 // Connection 객체 생성
 const connection = mysql.createConnection({
   host: 'localhost',
   port: 3306,
   user: 'root',
-  password: 3536,
+  password: '3536',
   database: 'test_crud'
 })
 // Connect
@@ -29,9 +29,9 @@ connection.connect(function (err) {
 
 app.post('/regist', function (req, res) {
   let user = {
-    'userid': req.body.userid,
-    'name': req.body.name,
-    'address': req.body.address
+    'userid': req.body.user.userid,
+    'name': req.body.user.name,
+    'address': req.body.user.address
   };
   let query = connection.query('insert into users set?', user, function (err, result) {
     if (err) {
@@ -54,7 +54,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
-
+app.use(bodyParser.json());
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 
