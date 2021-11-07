@@ -1,15 +1,16 @@
-var createError = require('http-errors');
-var express = require('express');
-var path = require('path');
-var cookieParser = require('cookie-parser');
-var logger = require('morgan');
+const createError = require('http-errors');
+const express = require('express');
+const app = express();
+const path = require('path');
+const cookieParser = require('cookie-parser');
+const logger = require('morgan');
 
-var indexRouter = require('./routes/index');
-var usersRouter = require('./routes/users');
+const indexRouter = require('./routes/index');
+const usersRouter = require('./routes/users');
 
-var mysql = require('mysql');
+const mysql = require('mysql');
 // Connection 객체 생성
-let connection = mysql.createConnection({
+const connection = mysql.createConnection({
   host: 'localhost',
   port: 3306,
   user: 'root',
@@ -25,6 +26,7 @@ connection.connect(function (err) {
   }
 });
 // Insert
+
 app.post('/regist', function (req, res) {
   let user = {
     'userid': req.body.userid,
@@ -42,7 +44,7 @@ app.post('/regist', function (req, res) {
 
 
 // view engine setup
-var app = express();
+
 
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'pug');
