@@ -7,9 +7,43 @@ var logger = require('morgan');
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 
-var app = express();
+var mysql = require('mysql');
+// Connection 객체 생성
+let connection = mysql.createConnection({
+  host: 'localhost',
+  port: 3306,
+  user: 'root',
+  password: 3536,
+  database: 'test_crud'
+})
+// Connect
+connection.connect(function (err) {
+  if (err) {
+    console.error('mysql connection error');
+    console.error(err);
+    throw err;
+  }
+});
+// Insert
+app.post('/regist', function (req, res) {
+  let user = {
+    'userid': req.body.userid,
+    'name': req.body.name,
+    'address': req.body.address
+  };
+  let query = connection.query('insert into users set?', user, function (err, result) {
+    if (err) {
+      console.error(err);
+      throw err;
+    }
+    res.status(200).send('success');
+  });
+});
+
 
 // view engine setup
+var app = express();
+
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'pug');
 
