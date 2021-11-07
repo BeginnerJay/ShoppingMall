@@ -1,6 +1,7 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import Home from '../views/Home.vue'
 import DataBinding from "../views/DataBinding";
+import Member from "../views/Member";
 
 const routes = [
   {
@@ -20,6 +21,11 @@ const routes = [
     path: '/databinding',
     name: 'DataBinding',
     component: DataBinding
+  },
+  {
+    path: '/member',
+    name: 'Member',
+    component: Member
   }
 ]
 
