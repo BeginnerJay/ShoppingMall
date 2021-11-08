@@ -4,7 +4,6 @@ const app = express();
 const path = require('path');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
-const bodyParser = require('body-parser');
 const indexRouter = require('./routes/index');
 const usersRouter = require('./routes/users');
 
@@ -27,7 +26,7 @@ connection.connect(function (err) {
 });
 // Insert
 
-app.post('/regist', function (req, res) {
+app.post('/post', function (req, res) {
   let user = {
     'userid': req.body.user.userid,
     'name': req.body.user.name,
@@ -51,10 +50,9 @@ app.set('view engine', 'pug');
 
 app.use(logger('dev'));
 app.use(express.json());
-app.use(express.urlencoded({ extended: false }));
+app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
-app.use(bodyParser.json());
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 

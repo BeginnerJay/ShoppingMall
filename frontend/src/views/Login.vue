@@ -1,7 +1,7 @@
 <template>
   <div class="login">
     <h1>사용자 정보를 입력하세요.</h1>
-    <form name="user" method="post" action="/regist">
+    <form name="user" method="post" action="/post">
       <div class="input-row">
         <label for="userid">아이디</label>
         <input id="userid" v-model="user.userid" type="text">
@@ -14,7 +14,7 @@
         <label for="address">주소</label>
         <input id="address" v-model="user.address" type="text">
       </div>
-      <button type="submitUser">전송</button>
+      <button type="submit">전송</button>
     </form>
   </div>
 </template>
@@ -27,11 +27,6 @@ export default {
         name: '',
         address: ''
       }
-    }
-  },
-  methods: {
-    submitUser (user) {
-      user = this.user
     }
   }
 }
